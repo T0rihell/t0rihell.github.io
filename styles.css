@@ -1,0 +1,152 @@
+body {
+  font-family: 'Times New Roman', Times, serif;
+  background: #1a1a1a;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+}
+
+input {
+  width: 200px;
+  padding: 10px;
+  margin: 10px 5px;
+  border-radius: 5px;
+  border: none;
+}
+
+button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  background-color: #ff4081;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #e73370;
+}
+
+.error {
+  color: #ff6b6b;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.ball {
+  margin: 30px auto 0;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle at 30% 30%, #000 0%, #111 70%);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  box-shadow: 
+    0 0 30px rgba(255, 64, 129, 0.7),
+    0 0 60px rgba(255, 42, 113, 0.7),
+    0 0 100px rgba(255, 8, 90, 0.7);
+
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.5s ease;
+
+  animation: neonPulse 3s infinite alternate;
+}
+
+.ball.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@keyframes neonPulse {
+  0% {
+    box-shadow: 
+      0 0 20px rgba(255, 64, 129, 0.6),
+      0 0 40px rgba(255, 33, 107, 0.6),
+      0 0 70px rgba(255, 10, 92, 0.6);
+  }
+  50% {
+    box-shadow: 
+      0 0 40px rgba(255, 64, 129, 0.5),
+      0 0 80px rgba(255, 33, 107, 0.5),
+      0 0 120px rgba(255, 10, 92, 0.5);
+  }
+  100% {
+    box-shadow: 
+       0 0 30px rgba(255, 64, 129, 0.7),
+       0 0 60px rgba(255, 42, 113, 0.7),
+       0 0 100px rgba(255, 8, 90, 0.7);
+  }
+}
+
+.ball::before,
+.ball::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #fff, 0 0 20px #ff0, 0 0 30px #0ff;
+  animation: spark 1.5s linear infinite;
+}
+
+.ball::before {
+  top: -20px;
+  left: 50%;
+}
+
+.ball::after {
+  bottom: -20px;
+  right: 50%;
+  animation-delay: 0.75s;
+}
+
+@keyframes spark {
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  50% { transform: translate(calc(20px - 10px), calc(-30px + 15px)) scale(0.5); opacity: 0.6; }
+  100% { transform: translate(0,0) scale(1); opacity: 1; }
+}
+
+.ball-text {
+  width: 260px;
+  height: 260px;
+  background: #ff4081;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  font-size: 18px;
+  opacity: 0;
+  transform: scale(0.3) rotate(-15deg);
+  transition: all 0.8s ease;
+}
+
+.ball-text.show {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  20% { transform: rotate(10deg); }
+  40% { transform: rotate(-10deg); }
+  60% { transform: rotate(10deg); }
+  80% { transform: rotate(-10deg); }
+  100% { transform: rotate(0deg); }
+}
